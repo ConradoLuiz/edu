@@ -29,8 +29,13 @@ int main(int argc, char**argv)
 	}
 
 	//saber o tamanho da string que é passada no argumento
-	int tam_rua = strlen(argv[1]);
+	int i;
+	for(i = 0; i < 72; i++){
+		if(argv[1][i] == '\0') break;
 
+	}
+	int tam_rua = i;
+	
 	//colocar todos os caracteres em maiusculo para comparar
 	for(int i = 0; i < tam_rua; i++){
 		argv[1][i] = toupper(argv[1][i]);
