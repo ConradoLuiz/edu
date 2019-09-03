@@ -70,11 +70,13 @@ int main(int argc, char**argv){
             fim = meio -1;
         }
     }
-
+    
+    fclose(f);
     if(!achou){
         std::cout<<"CEP nao encontrado.\n";
     }
     std::cout<<"Numero de comparacoes: "<< i<<std::endl;
+    
     
     return 0;
 }
