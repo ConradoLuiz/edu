@@ -48,7 +48,7 @@ public class Main{
                 }
             }
         }
-
+        f.close();
         if (!achou){
             System.out.println("CEP nao encontrado!");
         }
