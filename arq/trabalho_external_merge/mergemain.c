@@ -19,14 +19,17 @@ int comparaEndereco(const void *e1, const void *e2) {
 }
 
 int main(){
-
+    
     FILE *f, *saida;
     Endereco *e;
 
     char nome_arq[50];
 
+    
+
     long tam_arq, n_registros, tam_particao, n_particao = 8;
     f = fopen("cep.dat", "r");
+    
     fseek(f,0,SEEK_END);
     tam_arq = ftell(f);
     n_registros = tam_arq / sizeof(Endereco);
@@ -37,7 +40,7 @@ int main(){
     fseek(f, 0, SEEK_SET);
 
     while(i < n_particao ){
-        printf("Dividindo...\t");
+
         e = (Endereco*)malloc(sizeof(Endereco) * tam_particao);
 
         if(!fread(e, sizeof(Endereco), tam_particao, f) == tam_particao){
@@ -59,25 +62,23 @@ int main(){
 
     }
     
-    printf("Vou abrir e ler os arquivos!");
+
 
     fclose(f);
 
-    
-
     int total_arqs = (n_particao * 2) - 1;
+
+
     int total_intercalar = n_particao - 1;
 
     FILE *arq_a, *arq_b;
 
-    Endereco *ea, *eb;
+    Endereco ea, eb;
 
     int index_a = 0;
     int index_b = 1;
 
-
     for(int j = 0; j < total_intercalar; j++){
-        printf("Vou abrir e ler os arquivos!");
 
         sprintf(nome_arq, "cep_%d.dat", index_a);
         arq_a = fopen(nome_arq, "r");
@@ -86,12 +87,9 @@ int main(){
         sprintf(nome_arq, "cep_%d.dat", i);
         saida = fopen(nome_arq, "w");
 
-        
+        fread(&ea, sizeof(Endereco), 1, arq_a);
+        fread(&eb, sizeof(Endereco), 1, arq_b);
 
-        fread(ea, sizeof(Endereco), 1, arq_a);
-        fread(eb, sizeof(Endereco), 1, arq_b);
-
-        
 
         while (!feof(arq_a) && !feof(arq_b)) {
             if (comparaEndereco(&ea, &eb) < 0) {
@@ -103,7 +101,6 @@ int main(){
             }
         }
 
-        printf("Um dos arquivos acabou!");
 
         while (!feof(arq_a)) {
             fwrite(&ea, sizeof(Endereco), 1, saida);
@@ -122,6 +119,16 @@ int main(){
         index_b += 2;
         i++;
     }
+    i--;
+    
+    for (int j = 0; j < i; j++){
+        sprintf(nome_arq,"cep_%d.dat", j);
+        remove(nome_arq);
+    }
+    
+    sprintf(nome_arq, "cep_%d.dat", i);
+    rename(nome_arq,"cep_ordenado_do_conrado.dat");
+
     
     return 0;
 }
