@@ -310,6 +310,8 @@ int main(int argc, char** agrv){
 
         printf("Endereco encontrado com sucesso!\n");
         printf("%.72s\n%.72s\n%.72s\n%.72s\n%.2s\n%.8s\n",e.logradouro,e.bairro,e.cidade,e.uf,e.sigla,e.cep);
+        
+        fclose(f);
 
     } else{
         printf("Endereco nao esta na arvore!\n");
