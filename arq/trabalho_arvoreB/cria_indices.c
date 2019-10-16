@@ -279,6 +279,7 @@ int main(){
     }
 
     ArvoreB_Fecha(arvore);
+    fclose(f);
     return 0;
 
 }
