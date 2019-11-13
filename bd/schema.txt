@@ -1,33 +1,76 @@
--- this is an example
 
-group: nameOfTheNewGroup 
-
+group: Copulacao
 
 
 Alunos = {
 	mat:number, nome:string, endereco:string, cidade:string, sexo:string, data_nasc:string 
 	123, conrado, "helio modesto", "Petropolis", "masculino", "12/01/2000"
 	124, gabriel, "helio modesto", "Rio", "masculino", "12/01/1950"
+	563, hudson, "Corcovado", "Teresina", "Feminino", "09/08/1987"
+	903, leticia, "canabarro", "Tijuca", "feminino", "12/01/1950"
+	831, Luiz, "Viga", "Ouro Preto", "masculino", "11/11/1932"
 }
 
 Disciplinas = {
-	cod_disc:number, nome_disc:string, carga_hor:string
+	cod_disc:number, nome_disc:string, carga_hor:number
+	101, "bd", 4
+	102, "eda", 6
+	103, "psw", 10
+	104, "aps", 2
+	105, "pac", 9
 }
 
 Departamentos = {
 	cod_depto:number, nome:string, endereco:string, cidade:string
+	900, "Comp", "canabarro", "tijuca"
+	901, "Comp", "washington", "rio"
+	902, "Comp", "canabarro", "tijuca"
+	903, "Civil", "SaesPena", "Bonsucesso"	
 }
 
 Professores = {
 	cod_prof:number, nome:string, endereco:string, cidade:string, sexo:string, salario:number, especialidade:string, cod_depto:number
+	666, "Helder", "Inferno", "Quentin", "masculino", 6666, "mataluno", 900
+	667, "Kelle", "Quintino", "Rio", "Feminino", 5614, "banco", 901
+	668, "Myrna", "Bicalho", "SaoPaulo", "masculino", 8951, "listaencadeada", 900
+	669, "Renato", "Rosario", "Rio", "masculino", 1254, "terminal", 902
+	670, "Gustavo", "Quintino", "OuroPreto", "masculino", 6114, "poo", 901
 }
 
 Turma = {
-	cod_disc:number, cod_turma:string, cod_prof:number, ano:string, horario:string
-	101, "comp19", 123, "2019", "15:26"
-	101, "comp20", 123, "2019", "15:26"
+	cod_disc:number, cod_turma:number, cod_prof:number, ano:string, horario:string
+	101, 1122, 666, "2012", "12:00"
+	102, 1125, 667, "2003", "15:09"
+	101, 1127, 668, "2019", "16:10"
+	103, 1129, 668, "2020", "03:08"
+	105, 1130, 669, "2015", "10:40"	
 }
 
 Historico = {
 	mat:number, cod_disc:number, cod_turma:number, cod_prof:number, ano:string, frequencia:number, nota:number
 }
+
+
+
+
+
+b) π nome, especialidade ( σ cod_turma = 'comp19' ((Professores) ⨝ (Turma)))
+
+c)
+R = (σ nome_disc = 'bd' ∧ cod_turma = 'comp19' (Turma ⨝ Disciplinas))
+S = R ⨝ Professores
+T = π nome (S)
+T
+
+d)
+γ especialidade; max(salario)->x (Professores)
+
+e) 
+R = Historico ⨝ Alunos
+S = σ ano = '2017' (R)
+T = σ nome_disc = 'bd' (S ⨝ Disciplinas)
+U = π mat, nome (sigma nota < 5 (T))
+
+U
+
+f)
