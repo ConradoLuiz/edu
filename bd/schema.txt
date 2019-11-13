@@ -1,0 +1,33 @@
+-- this is an example
+
+group: nameOfTheNewGroup 
+
+
+
+Alunos = {
+	mat:number, nome:string, endereco:string, cidade:string, sexo:string, data_nasc:string 
+	123, conrado, "helio modesto", "Petropolis", "masculino", "12/01/2000"
+	124, gabriel, "helio modesto", "Rio", "masculino", "12/01/1950"
+}
+
+Disciplinas = {
+	cod_disc:number, nome_disc:string, carga_hor:string
+}
+
+Departamentos = {
+	cod_depto:number, nome:string, endereco:string, cidade:string
+}
+
+Professores = {
+	cod_prof:number, nome:string, endereco:string, cidade:string, sexo:string, salario:number, especialidade:string, cod_depto:number
+}
+
+Turma = {
+	cod_disc:number, cod_turma:string, cod_prof:number, ano:string, horario:string
+	101, "comp19", 123, "2019", "15:26"
+	101, "comp20", 123, "2019", "15:26"
+}
+
+Historico = {
+	mat:number, cod_disc:number, cod_turma:number, cod_prof:number, ano:string, frequencia:number, nota:number
+}
