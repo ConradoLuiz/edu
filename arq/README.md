@@ -1,0 +1,3 @@
+# ESTRUTURAS DE ARQUIVOS
+### link
+* https://www.dropbox.com/sh/rq3qtyizpgjnr2c/AADNzRS9NJKd8Gfc-9XVEVi_a?dl=0
